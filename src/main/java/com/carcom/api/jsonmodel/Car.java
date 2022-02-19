@@ -3,7 +3,7 @@ package com.carcom.api.jsonmodel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Car {
-	@JsonProperty("brand-sid")
+	@JsonProperty("brandsid")
 	private String brandSid;
 	
 	@JsonProperty("carName")

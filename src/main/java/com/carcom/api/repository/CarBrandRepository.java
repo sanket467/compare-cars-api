@@ -9,4 +9,5 @@ import com.carcom.api.model.CarBrand;
 
 @Repository
 public interface CarBrandRepository extends MongoRepository<CarBrand, String> {
+	CarBrand findBySid(String sid);
 }

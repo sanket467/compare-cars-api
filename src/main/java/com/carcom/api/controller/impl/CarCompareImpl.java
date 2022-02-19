@@ -11,12 +11,16 @@ import com.carcom.api.controller.CarCompare;
 import com.carcom.api.jsonmodel.Brand;
 import com.carcom.api.jsonmodel.Car;
 import com.carcom.api.service.CarBrandService;
+import com.carcom.api.service.CarService;
 
 @Controller
 public class CarCompareImpl implements CarCompare {
 	
 	@Autowired
 	private CarBrandService carBrandService;
+	
+	@Autowired
+	private CarService carService;
 	
 	@Override
 	public ResponseEntity<?> getAllManufacturers() {
@@ -33,8 +37,18 @@ public class CarCompareImpl implements CarCompare {
 
 	@Override
 	public ResponseEntity<?> addCar(Car car) {
-		// TODO Auto-generated method stub
-		return null;
+		if(!StringUtils.isEmpty(car.getCarName()) && !StringUtils.isEmpty(car.getVariant()) && !StringUtils.isEmpty(car.getVariant())) {
+			return carService.addCar(car);
+		}
+		return new ResponseEntity<>("Missing Mandatory fields", HttpStatus.BAD_REQUEST);
+	}
+
+	@Override
+	public ResponseEntity<?> getCarsBySid(String sid) {
+		if(!StringUtils.isEmpty(sid)) {
+			return carService.getCarsBySid(sid);
+		}
+		return new ResponseEntity<>("Missing Mandatory fields", HttpStatus.BAD_REQUEST);
 	}
 
 }
